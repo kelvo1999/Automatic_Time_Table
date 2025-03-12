@@ -4,11 +4,11 @@
 if(@$_SESSION['user_id']){
 	
    $path = $_SERVER['DOCUMENT_ROOT'];
-   $path .= "/timetable/header.php";
+   $path = "../header.php";
    include_once($path);
    
    $path = $_SERVER['DOCUMENT_ROOT'];
-   $path .= "/timetable/class.database.php";
+   $path = "../class.database.php";
    include_once($path);
    
    include_once("navbar.php");

@@ -1,11 +1,11 @@
 <?php 
    session_start();
    $path = $_SERVER['DOCUMENT_ROOT'];
-   $path .= "/timetable/header.php";
+   $path = "header.php";
    include_once($path); 
 
    $path = $_SERVER['DOCUMENT_ROOT'];
-   $path .= "/timetable/class.ManageUsers.php";
+   $path = "class.ManageUsers.php";
    include_once($path);
    
    $users = new ManageUsers();
@@ -41,7 +41,7 @@
 <body>
 	<nav class="navbar navbar-default navbar-static-top">
 	  <div class="container">
-	  <h3>Time Table Builder</h3>
+	  <h3>Automatic Time Table</h3>
 	  </div>
 	</nav>
 	
@@ -87,6 +87,6 @@
 </body>
 <?php 
    $path = $_SERVER['DOCUMENT_ROOT'];
-   $path .= "/timetable/footer.php";
+   $path = "footer.php";
    include_once($path);
 ?>
