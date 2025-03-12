@@ -7,7 +7,7 @@
 <body>
 	<nav class="navbar navbar-default navbar-static-top">
 	  <div class="container">
-	  <h3>Time Table Builder</h3>
+	  <h3>Automatic Time Table</h3>
 	  </div>
 	</nav>
 	
