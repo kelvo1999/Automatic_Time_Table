@@ -5,11 +5,14 @@
    include_once($path);
 ?>
 <body>
-	<nav class="navbar navbar-default navbar-static-top">
+	<!-- <nav class="navbar navbar-default navbar-static-top">
 	  <div class="container">
 	  <h3>Automatic Time Table</h3>
 	  </div>
-	</nav>
+	</nav> -->
+	<?php
+	include_once("head.php");
+	?>
 	
 	<div id="content">
 		<div id="form">
@@ -17,11 +20,11 @@
 			<fieldset>
 
 			<!-- Form Name -->
-			<legend>Register Here</legend>
+			<legend>Register School Here</legend>
 			
 			<!-- Text input-->
-			<div class="form-group">
-			  <label class="col-md-4 control-label" for="username">Collage Name</label>  
+			<div class="form-group"> 
+			  <label class="col-md-4 control-label" for="username">School Name</label>  
 			  <div class="col-md-4">
 			  <input id="uname" name="uname" type="text" placeholder="" class="form-control input-md" required="">
 				
@@ -41,7 +44,7 @@
 			<div class="form-group">
 			  <label class="col-md-4 control-label" for="email">Email</label>  
 			  <div class="col-md-4">
-			  <input id="email" name="email" type="text" placeholder="" class="form-control input-md" required="">
+			  <input id="email" name="email" type="email" placeholder="" class="form-control input-md" required="">
 				
 			  </div>
 			</div>
