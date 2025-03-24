@@ -1,85 +1,78 @@
-<?php 
-   $path = $_SERVER['DOCUMENT_ROOT'];
-   $path = "header.php";
-//    $path .= "/timetable/header.php";
-   include_once($path);
-?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" href="users/style.css">
+    
+</head>
 <body>
-	<!-- <nav class="navbar navbar-default navbar-static-top">
-	  <div class="container">
-	  <h3>Automatic Time Table</h3>
-	  </div>
-	</nav> -->
-	<?php
-	include_once("head.php");
-	?>
-	
-	<div id="content">
-		<div id="form">
-		<form class="form-horizontal" method="post" action="libs/register.php">
-			<fieldset>
+    <header>
+        <nav>
+            <div class="logo">Automatic TimeTable Builder</div>
+            <ul>
+                <li><a href="../index.php">Home</a></li>
+                <li><a href="register.php">Student</a></li>
+                <li><a href="register.php">Lecturer</a></li>
+                <li><a href="../index.php">Admin</a></li>
+                <!-- <li><a href="#contact">Contact</a></li> -->
+            </ul>
+        </nav>
+    </header>
 
-			<!-- Form Name -->
-			<legend>Register School Here</legend>
-			
-			<!-- Text input-->
-			<div class="form-group"> 
-			  <label class="col-md-4 control-label" for="username">School Name</label>  
-			  <div class="col-md-4">
-			  <input id="uname" name="uname" type="text" placeholder="" class="form-control input-md" required="">
-				
-			  </div>
-			</div>
+    <!DOCTYPE html>
+<html>
 
-			<!-- Text input-->
-			<div class="form-group">
-			  <label class="col-md-4 control-label" for="username">Username</label>  
-			  <div class="col-md-4">
-			  <input id="username" name="username" type="text" placeholder="" class="form-control input-md" required="">
-				
-			  </div>
-			</div>
-
-			<!-- Text input-->
-			<div class="form-group">
-			  <label class="col-md-4 control-label" for="email">Email</label>  
-			  <div class="col-md-4">
-			  <input id="email" name="email" type="email" placeholder="" class="form-control input-md" required="">
-				
-			  </div>
-			</div>
-
-			<!-- Password input-->
-			<div class="form-group">
-			  <label class="col-md-4 control-label" for="password">Password</label>
-			  <div class="col-md-4">
-				<input id="password" name="password" type="password" placeholder="" class="form-control input-md" required="">
-				
-			  </div>
-			</div>
-
-			<!-- Button -->
-			<div class="form-group">
-			  <label class="col-md-4 control-label" for="register"></label>
-			  <div class="col-md-4">
-				<input type="submit" id="register" name="register" class="btn btn-success" value="Register">
-			  </div>
-			</div>
-
-			</fieldset>
-		</form>
-		</div>
-		<div id="login">
-		Already Registered. <a href="login.php">Login </a>
-		</div>
-	</div>
-			
-			
+<body>
+    
 
 
+<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+    <div class="login-box">
+        <h1 id="hl">Sign Up</h1>
+        <div class="textbox ">
+            <i class="fa fa-user" aria-hidden="true"></i>
+            <input type="text" name="input" placeholder="Name" >
+            <span class="help-block"></span>
+        </div>
+        <div class="textbox ">
+            <i class="fa fa-user" aria-hidden="true"></i>
+            <input type="email" name="input" placeholder=" Email" >
+            <span class="help-block"></span>
+        </div>
+        <div class="textbox ">
+            <i class="fa fa-user" aria-hidden="true"></i>
+            <input type="email" name="input" placeholder=" School" >
+            <span class="help-block"></span>
+        </div>
+        <div class="textbox ">
+            <i class="fa fa-user" aria-hidden="true"></i>
+            <input type="email" name="input" placeholder=" Department" >
+            <span class="help-block"></span>
+        </div>
+        <div class="textbox <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
+            <i class="fa fa-lock" aria-hidden="true"></i>
+            <input type="password" name="password" placeholder="Password">
+            <span class="help-block"></span>
+        </div>
+        
+        <div class="textbox <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
+            <i class="fa fa-lock" aria-hidden="true"></i>
+            <input type="password" name="password" placeholder="Confirm Password">
+            <span class="help-block"></span>
+        </div>
+        
+        <input type="submit" class="btn btn-primary" value="Login">
+        <p>Already Registered? <a href="login.php">Sign In</a></p>
+        <!-- <p>Forgot password? <a href="mailto:example@example.com?subject=Password Reset">Reset</a></p> -->
+    </div>
+</form>
+
+
+
+    <footer>
+        <p>&copy; Automatic TimeTable Builder. All rights reserved.</p>
+    </footer>
 </body>
-<?php 
-   $path = $_SERVER['DOCUMENT_ROOT'];
-   $path = "footer.php";
-   include_once($path);
-?>
+</html>
