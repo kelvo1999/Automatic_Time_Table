@@ -1,20 +1,21 @@
 -- phpMyAdmin SQL Dump
--- version 3.5.2.2
--- http://www.phpmyadmin.net
+-- version 5.2.1
+-- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 25, 2015 at 12:58 PM
--- Server version: 5.5.27
--- PHP Version: 5.4.7
+-- Generation Time: Mar 24, 2025 at 01:37 PM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
 
-SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8mb4 */;
 
 --
 -- Database: `timetable`
@@ -26,17 +27,16 @@ SET time_zone = "+00:00";
 -- Table structure for table `course`
 --
 
-CREATE TABLE IF NOT EXISTS `course` (
-  `course_id` int(30) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `course` (
+  `course_id` int(30) NOT NULL,
   `user_id` int(50) NOT NULL,
   `course_name` varchar(50) NOT NULL,
   `course_full_name` varchar(60) NOT NULL,
   `semester` varchar(20) NOT NULL,
   `section` varchar(20) NOT NULL,
   `subject_id` varchar(20) NOT NULL,
-  `faculty_id` varchar(20) NOT NULL,
-  PRIMARY KEY (`course_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=50 ;
+  `faculty_id` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `course`
@@ -51,15 +51,14 @@ INSERT INTO `course` (`course_id`, `user_id`, `course_name`, `course_full_name`,
 -- Table structure for table `faculty`
 --
 
-CREATE TABLE IF NOT EXISTS `faculty` (
-  `faculty_id` int(30) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `faculty` (
+  `faculty_id` int(30) NOT NULL,
   `user_id` int(50) NOT NULL,
   `faculty_code` varchar(30) NOT NULL,
   `faculty_name` varchar(50) NOT NULL,
   `designation` varchar(60) NOT NULL,
-  `qualification` varchar(60) NOT NULL,
-  PRIMARY KEY (`faculty_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=25 ;
+  `qualification` varchar(60) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `faculty`
@@ -74,23 +73,23 @@ INSERT INTO `faculty` (`faculty_id`, `user_id`, `faculty_code`, `faculty_name`, 
 -- Table structure for table `subject`
 --
 
-CREATE TABLE IF NOT EXISTS `subject` (
-  `subject_id` int(30) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `subject` (
+  `subject_id` int(30) NOT NULL,
   `user_id` int(50) NOT NULL,
   `subject_code` varchar(30) NOT NULL,
   `subject_name` varchar(60) NOT NULL,
   `l` varchar(15) NOT NULL,
   `t` varchar(15) NOT NULL,
-  `p` varchar(15) NOT NULL,
-  PRIMARY KEY (`subject_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=25 ;
+  `p` varchar(15) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `subject`
 --
 
 INSERT INTO `subject` (`subject_id`, `user_id`, `subject_code`, `subject_name`, `l`, `t`, `p`) VALUES
-(24, 24, '123', 'aaaaa', '2', '1', '4');
+(24, 24, '123', 'aaaaa', '2', '1', '4'),
+(25, 25, 'MAT 100', 'BASIC MATH', '20', '400', '50');
 
 -- --------------------------------------------------------
 
@@ -98,15 +97,14 @@ INSERT INTO `subject` (`subject_id`, `user_id`, `subject_code`, `subject_name`, 
 -- Table structure for table `tablesheet`
 --
 
-CREATE TABLE IF NOT EXISTS `tablesheet` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `tablesheet` (
+  `id` int(10) NOT NULL,
   `cell` varchar(4) NOT NULL,
   `data` varchar(10) NOT NULL,
   `faculty_name` varchar(20) NOT NULL,
   `timetable_id` varchar(20) NOT NULL,
-  `user_id` int(50) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=93 ;
+  `user_id` int(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `tablesheet`
@@ -127,15 +125,14 @@ INSERT INTO `tablesheet` (`id`, `cell`, `data`, `faculty_name`, `timetable_id`, 
 -- Table structure for table `timetable`
 --
 
-CREATE TABLE IF NOT EXISTS `timetable` (
-  `timetable_id` int(20) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `timetable` (
+  `timetable_id` int(20) NOT NULL,
   `user_id` int(50) NOT NULL,
   `course_full_name` varchar(40) NOT NULL,
   `year` varchar(20) NOT NULL,
   `semester` varchar(20) NOT NULL,
-  `course` varchar(20) NOT NULL,
-  PRIMARY KEY (`timetable_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=19 ;
+  `course` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `timetable`
@@ -150,8 +147,8 @@ INSERT INTO `timetable` (`timetable_id`, `user_id`, `course_full_name`, `year`, 
 -- Table structure for table `timing`
 --
 
-CREATE TABLE IF NOT EXISTS `timing` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `timing` (
+  `id` int(11) NOT NULL,
   `user_id` varchar(20) NOT NULL,
   `first` varchar(20) NOT NULL,
   `second` varchar(20) NOT NULL,
@@ -160,9 +157,8 @@ CREATE TABLE IF NOT EXISTS `timing` (
   `fifth` varchar(20) NOT NULL,
   `sixth` varchar(20) NOT NULL,
   `seventh` varchar(20) NOT NULL,
-  `eight` varchar(20) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+  `eight` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `timing`
@@ -174,27 +170,149 @@ INSERT INTO `timing` (`id`, `user_id`, `first`, `second`, `third`, `fourth`, `fi
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `user`
+--
+
+CREATE TABLE `user` (
+  `ID` int(11) NOT NULL,
+  `Name` varchar(255) NOT NULL,
+  `Email` varchar(255) NOT NULL,
+  `Department` varchar(255) NOT NULL,
+  `School` varchar(255) NOT NULL,
+  `Password` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users`
 --
 
-CREATE TABLE IF NOT EXISTS `users` (
-  `user_id` int(50) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `users` (
+  `user_id` int(50) NOT NULL,
   `password` varchar(50) NOT NULL,
   `ip_address` varchar(100) NOT NULL,
   `date` varchar(30) NOT NULL,
   `time` varchar(30) NOT NULL,
   `username` varchar(100) NOT NULL,
   `email` varchar(60) NOT NULL,
-  `uname` varchar(60) NOT NULL,
-  PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=25 ;
+  `uname` varchar(60) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`user_id`, `password`, `ip_address`, `date`, `time`, `username`, `email`, `uname`) VALUES
-(24, '123', '::1', '2015-05-25', '12:49:04', 'anurag', 'anuragambraham@gmail.com', 'Sharda University');
+(24, '123', '::1', '2015-05-25', '12:49:04', 'anurag', 'anuragambraham@gmail.com', 'Sharda University'),
+(25, 'Shule@1234', '::1', '2025-03-12', '14:12:02', 'Shule', 'shule@shule.com', 'Shule'),
+(26, 'M@tanui17', '::1', '2025-03-12', '14:48:36', '2511', 'maurinetanui10@gmail.com', 'maurine tanui'),
+(27, 'hkjk', '::1', '2025-03-21', '13:26:43', 'jkjk', 'jkk', 'kljk');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `course`
+--
+ALTER TABLE `course`
+  ADD PRIMARY KEY (`course_id`);
+
+--
+-- Indexes for table `faculty`
+--
+ALTER TABLE `faculty`
+  ADD PRIMARY KEY (`faculty_id`);
+
+--
+-- Indexes for table `subject`
+--
+ALTER TABLE `subject`
+  ADD PRIMARY KEY (`subject_id`);
+
+--
+-- Indexes for table `tablesheet`
+--
+ALTER TABLE `tablesheet`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `timetable`
+--
+ALTER TABLE `timetable`
+  ADD PRIMARY KEY (`timetable_id`);
+
+--
+-- Indexes for table `timing`
+--
+ALTER TABLE `timing`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `user`
+--
+ALTER TABLE `user`
+  ADD PRIMARY KEY (`ID`);
+
+--
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`user_id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `course`
+--
+ALTER TABLE `course`
+  MODIFY `course_id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+
+--
+-- AUTO_INCREMENT for table `faculty`
+--
+ALTER TABLE `faculty`
+  MODIFY `faculty_id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+
+--
+-- AUTO_INCREMENT for table `subject`
+--
+ALTER TABLE `subject`
+  MODIFY `subject_id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+
+--
+-- AUTO_INCREMENT for table `tablesheet`
+--
+ALTER TABLE `tablesheet`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=93;
+
+--
+-- AUTO_INCREMENT for table `timetable`
+--
+ALTER TABLE `timetable`
+  MODIFY `timetable_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+
+--
+-- AUTO_INCREMENT for table `timing`
+--
+ALTER TABLE `timing`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `user`
+--
+ALTER TABLE `user`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `user_id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
