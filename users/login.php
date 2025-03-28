@@ -1,5 +1,54 @@
-<!DOCTYPE html>
-<html lang="en">
+<?php
+session_start();
+include '../database/class.database.php'; // Include the database connection file
+include '../includes/header.php';
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $email = trim($_POST['email']);
+    $password = trim($_POST['password']);
+
+    // Prepare SQL statement to prevent SQL injection
+    $sql = "SELECT id, name, email, password FROM user WHERE email = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("s", $email);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    // Check if user exists
+    if ($result->num_rows == 1) {
+        $user = $result->fetch_assoc();
+        $stored_hash = $user['password'];
+
+        // Debugging: Uncomment this to check the hash (remove in production)
+        // echo "<script>alert('Entered Password: $password | Stored Hash: $stored_hash');</script>";
+
+        // Verify password
+        if (password_verify($password, $stored_hash)) {
+            // Start session variables
+            $_SESSION['user_id'] = $user['id'];
+            $_SESSION['email'] = $user['email'];
+            $_SESSION['name'] = $user['name'];
+
+            // Redirect to dashboard
+            header("Location: dashboard.php");
+            exit();
+        } else {
+            echo "<script>alert('Incorrect password.'); window.history.back();</script>";
+        }
+    } else {
+        echo "<script>alert('Email not registered.'); window.history.back();</script>";
+    }
+
+    // Close statement and connection
+    $stmt->close();
+    $conn->close();
+}
+?>
+
+
+    <!DOCTYPE html>
+<html>
+<html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,22 +56,9 @@
     <link rel="stylesheet" href="style.css">
     
 </head>
-<body>
-    <header>
-        <nav>
-            <div class="logo">Automatic TimeTable Builder</div>
-            <ul>
-                <li><a href="../index.php">Home</a></li>
-                <li><a href="register.php">Student</a></li>
-                <li><a href="register.php">Lecturer</a></li>
-                <li><a href="../index.php">Admin</a></li>
-                <!-- <li><a href="#contact">Contact</a></li> -->
-            </ul>
-        </nav>
-    </header>
-
-    <!DOCTYPE html>
-<html>
+<?php
+	include_once("../includes/head.php");
+	?>
 
 <body>
     
@@ -34,7 +70,7 @@
         
         <div class="textbox ">
             <i class="fa fa-user" aria-hidden="true"></i>
-            <input type="text" name="input" placeholder="Username or Email" >
+            <input type="email" name="email" placeholder="Email" >
             <span class="help-block"></span>
         </div>
         

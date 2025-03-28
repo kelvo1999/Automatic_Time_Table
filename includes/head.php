@@ -1,10 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
-    <style>
+<style>
     header {
     background-color: #333;
     color: #fff;
@@ -46,23 +40,15 @@ nav ul li a:hover {
 }
 
 </style>
-</head>
-<body>
-
-
 <header>
         <nav>
             <div class="logo">Automatic TimeTable Builder</div>
             <ul>
-                <li><a href="dashboard.php">Home</a></li>
-                <li><a href="timetable.php">Timetable</a></li>
-                <li><a href="enquiries.php">Enquiries</a></li>
-                <li><a href="view-enquiries.php">Make an Enquiry</a></li>
-                <li><a href="logout.php">Log Out</a></li>
-               
+                <li><a href="../index.php">Home</a></li>
+                <li><a href="users/register.php">Student</a></li>
+                <li><a href="users/register.php">Lecturer</a></li>
+                <li><a href="../admin/admin.php">Admin</a></li>
+                <!-- <li><a href="#contact">Contact</a></li> -->
             </ul>
         </nav>
     </header>
-    
-</body>
-</html>

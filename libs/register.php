@@ -1,7 +1,7 @@
 <?php
 	session_start();
 	$path = $_SERVER['DOCUMENT_ROOT'];
-    $path = "../class.ManageUsers.php";
+    $path = "../admin/class.ManageUsers.php";
     include_once($path);
 	
 	$users = new ManageUsers();
@@ -28,14 +28,15 @@
 					$_SESSION['name'] = $userSessions['username'];
 					if(isset($_SESSION['name']))
 					{
-						header("location: ../dashboard/dashboard.php");
+						header("location: ../admin/dashboard/dashboard.php");
 					}
 				}
 			}
 		}
 		else
 		{
-			echo $error = "Username Already taken";
+			// echo $error = "Username Already taken";
+			echo $error = "<script>alert('This email is already registered.'); window.history.back();</script>";
 		}
 		
 	}
